@@ -1,0 +1,6 @@
+Enumera cinco funciones con IA con las que has interactuado esta semana. Para cada una, anota tu veredicto: ¿está produciendo contenido nuevo, o está ordenando, clasificando y categorizando contenido existente?
+1. Verificación de "Soy humano" para acceder a ciertas webs. No es contenido nuevo.
+2. Recomendaciones de productos relacionados al realizar una compra. Es contenido nuevo.
+3. Autocompletado. Contenido nuevo.
+4. Conversaciones en chats de LLMs. Contenido nuevo.
+5. Filtrado de SPAM. No es contenido nuevo. Falló (había enviado a Spam una factura importante).
