@@ -21,3 +21,11 @@ mes1 = "mes1:main"
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.0",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N"]

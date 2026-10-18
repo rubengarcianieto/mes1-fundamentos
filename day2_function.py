@@ -1,5 +1,6 @@
 import requests
 
+
 def get_post(id: int) -> dict:
     r = requests.get(f"https://jsonplaceholder.typicode.com/posts/{id}")
     if r.status_code == 404:
@@ -7,5 +8,6 @@ def get_post(id: int) -> dict:
     r.raise_for_status()
     return r.json()
 
-print(obtener_post(1))
-print(obtener_post(99999))  # must raise ValueError
+
+print(get_post(1))
+print(get_post(99999))  # must raise ValueError
