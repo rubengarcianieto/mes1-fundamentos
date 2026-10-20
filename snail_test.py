@@ -1,9 +1,9 @@
-# Run with: uv run pytest blackboard_test.py -v
+# Run with: uv run pytest snail_test.py -v
 
 import pytest
 from pydantic import ValidationError
 
-from blackboard_schema import BlackboardEntry, EntryStatus, EntryType
+from snail_schema import BlackboardEntry, EntryStatus, EntryType
 
 
 def test_root_interpretation_without_parent_is_valid():
