@@ -68,7 +68,9 @@ async def test_fetch_weather_success() -> None:
 async def test_fetch_weather_exhausts_retries() -> None:
     """Test that exhausting retries raises the HTTPStatusError exception."""
     server_error = httpx.Response(status_code=500)
-    handler = UrlRoutingMockHandler({str(MADRID_LAT): [server_error, server_error, server_error]})
+    handler = UrlRoutingMockHandler(
+        {str(MADRID_LAT): [server_error, server_error, server_error]}
+    )
     transport = httpx.MockTransport(handler)
 
     async with httpx.AsyncClient(transport=transport) as client:
@@ -86,9 +88,13 @@ async def test_fetch_weather_exhausts_retries() -> None:
 
 @pytest.mark.asyncio
 async def test_fetch_weather_exhausts_retries_timeout() -> None:
-    """Test that exhausting retries due to transport timeouts raises a TransportError."""
+    """Test that exhausting retries due to transport
+    timeouts raises a TransportError.
+    """
     timeout_err = httpx.ReadTimeout("Timeout")
-    handler = UrlRoutingMockHandler({str(MADRID_LAT): [timeout_err, timeout_err, timeout_err]})
+    handler = UrlRoutingMockHandler(
+        {str(MADRID_LAT): [timeout_err, timeout_err, timeout_err]}
+    )
     transport = httpx.MockTransport(handler)
 
     async with httpx.AsyncClient(transport=transport) as client:
@@ -152,7 +158,9 @@ async def test_fetch_weather_invalid_data_raises_validation_error() -> None:
         status_code=200,
         json={"latitude": "invalid_string", "longitude": MADRID_LON, "current": {}},
     )
-    transport = httpx.MockTransport(UrlRoutingMockHandler({str(MADRID_LAT): [bad_resp]}))
+    transport = httpx.MockTransport(
+        UrlRoutingMockHandler({str(MADRID_LAT): [bad_resp]})
+    )
 
     async with httpx.AsyncClient(transport=transport) as client:
         with pytest.raises(ValidationError):
@@ -163,7 +171,9 @@ async def test_fetch_weather_invalid_data_raises_validation_error() -> None:
 async def test_fetch_weather_invalid_json_raises_value_error() -> None:
     """Test that a non-JSON response body raises a ValueError."""
     bad_resp = httpx.Response(status_code=200, content=b"Not a JSON body")
-    transport = httpx.MockTransport(UrlRoutingMockHandler({str(MADRID_LAT): [bad_resp]}))
+    transport = httpx.MockTransport(
+        UrlRoutingMockHandler({str(MADRID_LAT): [bad_resp]})
+    )
 
     async with httpx.AsyncClient(transport=transport) as client:
         with pytest.raises(ValueError, match="Invalid JSON response"):
@@ -214,8 +224,22 @@ async def test_fetch_multiple_cities_mixed_results() -> None:
 @pytest.mark.parametrize(
     ("error", "expected"),
     [
-        (httpx.HTTPStatusError("Err", request=httpx.Request("GET", "http://test"), response=httpx.Response(500)), True),
-        (httpx.HTTPStatusError("Err", request=httpx.Request("GET", "http://test"), response=httpx.Response(404)), False),
+        (
+            httpx.HTTPStatusError(
+                "Err",
+                request=httpx.Request("GET", "http://test"),
+                response=httpx.Response(500),
+            ),
+            True,
+        ),
+        (
+            httpx.HTTPStatusError(
+                "Err",
+                request=httpx.Request("GET", "http://test"),
+                response=httpx.Response(404),
+            ),
+            False,
+        ),
         (httpx.ReadTimeout("Timeout"), True),
         (ValueError("Invalid"), False),
     ],

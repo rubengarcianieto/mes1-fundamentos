@@ -2,7 +2,7 @@ import asyncio
 import json
 
 import httpx
-from pydantic import BaseModel, ValidationError
+from pydantic import BaseModel
 
 WEATHER_API_URL = "https://api.open-meteo.com/v1/forecast"
 DEFAULT_TIMEOUT = 10.0
