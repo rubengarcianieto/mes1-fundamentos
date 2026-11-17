@@ -11,9 +11,14 @@ is meant to verify each result.
 
 ## Status
 
-Month 1 of 8: Python fundamentals, HTTP, pydantic, async, and the first
-version of the blackboard entry schema. Only the schema and its tests exist
-so far; the rest of the design below is planned.
+Month 1 of 8: Python fundamentals, HTTP, pydantic, async and testing.
+Implemented so far:
+
+- The first version of the blackboard entry schema, with tests.
+- An async weather client (a practice project) with retries, pydantic
+  validation and offline tests.
+
+The rest of the design is planned.
 
 ## Setup
 
@@ -23,7 +28,7 @@ Requires Python 3.14 and [uv](https://docs.astral.sh/uv/).
 
 ## Run the tests
 
-    uv run pytest snail_test.py -v
+    uv run pytest -v
 
 ## Design invariants (planned)
 
@@ -33,7 +38,8 @@ Requires Python 3.14 and [uv](https://docs.astral.sh/uv/).
 4. Iteration cap, with escalation to a human.
 5. Traceability: model, version, and prompt hash.
 
-## References
+## Documents
 
-See [docs/REFERENCES.md](docs/REFERENCES.md). The EU AI Act is used as design
-inspiration only, not as a legal obligation.
+- [Design intent](docs/DESIGN_INTENT.md): what the project aims to do and why.
+- [References](docs/REFERENCES.md): sources. The EU AI Act is used as design
+  inspiration only, not as a legal obligation.
