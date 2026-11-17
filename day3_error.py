@@ -2,7 +2,7 @@ from pydantic import BaseModel, ValidationError
 
 
 class Post(BaseModel):
-    userId: int
+    userId: int   # noqa: N815
     id: int
     title: str
     body: str

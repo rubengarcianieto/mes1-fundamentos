@@ -51,6 +51,7 @@ def test_invalid_type_is_rejected():
             content="...",
         )
 
+
 @pytest.mark.parametrize("entry_type", [EntryType.RESULT, EntryType.VERDICT])
 def test_non_root_types_without_parent_are_rejected(entry_type):
     with pytest.raises(ValidationError):
